@@ -35,7 +35,7 @@ config_client(){
 cat > /etc/wireguard/client.conf <<-EOF
 [Interface]
 PrivateKey = $c1
-Address = 10.0.0.2/24 
+Address = 110.0.0.2/24 
 PreUp = start D:\software\TunSafe\bat\start.bat
 PreUp = ping -n 4 127.1 >nul
 PostUp = start D:\software\TunSafe\bat\routes-up.bat
@@ -98,7 +98,7 @@ wireguard_install(){
 	cat > /etc/wireguard/wg0.conf <<-EOF
 [Interface]
 PrivateKey = $s1
-Address = 10.0.0.1/24 
+Address = 110.0.0.1/24 
 PostUp   = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o $NIC -j MASQUERADE
 PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o $NIC -j MASQUERADE
 ListenPort = 1195
@@ -106,7 +106,7 @@ DNS = 8.8.8.8
 MTU = 1420
 [Peer]
 PublicKey = $c2
-AllowedIPs = 10.0.0.2/32
+AllowedIPs = 110.0.0.2/32
 EOF
 
     config_client
